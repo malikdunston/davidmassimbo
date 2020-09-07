@@ -1,4 +1,10 @@
-(function(){
+const password = "cuse44";
+
+
+
+// (function(){
+
+let loadAngular = function(){
 
 	let david = angular.module("david", [
 		"navigation"
@@ -21,4 +27,15 @@
 
 	});
 
-})();
+}
+
+// })();
+
+
+let ask = prompt("Password: ");
+if(ask !== password){
+	alert("Password Incorrect!");
+	// window.location.href = "http://www.malikdunston.com/";
+}else{
+	loadAngular();
+}
