@@ -13,8 +13,6 @@
 	var navigation = this;
 	navigation.app = $scope.$parent.david;
 	
-		console.log(navigation);
-
 	// open/close Navigation
 		navigation.app.navOpen = false;
 		navigation.openNavigation = function(){

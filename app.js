@@ -7,23 +7,55 @@ const password = "cuse44";
 let loadAngular = function(){
 
 	let david = angular.module("david", [
-		"navigation"
+		"ui.router",
+		// "$http",
+	// routes
+		"home",
+		"project",
+	// components
+		"navigation",
+		"work"
 	]);
 
-	david.controller("appCtrl", function($scope){
-	let david = this;
+	david.config(function($locationProvider, $urlRouterProvider){
+	        $locationProvider.html5Mode(true);
+		$urlRouterProvider.otherwise("/");
+	});
 
-		david.title = "David Massimbo";
-		console.log(david.title);
+	david.controller("appCtrl", function($scope, $http){
+	let app = this;
 
-		david.menu = [
-			{title: "work", link: "work"},
+
+
+	// get all tags
+		$http({
+			method: "GET",
+			url: window.$cms + "tags"
+		}).then(function(res){
+			app.tags = [];
+		// group projects by tag.
+			res.data.forEach(function(tag){
+			// for every tag, search for projects with that tag's id.
+				$http({
+					method: "GET",
+					url: window.$cms + "projects?tags=" + tag.id
+				}).then(function(r){
+					tag.projects = r.data;
+					app.tags.push(tag);
+				});
+			})
+			console.log("PROJECTS: ", app.tags);
+		});
+
+
+
+	// page stuff
+		app.title = "David Massimbo";
+		app.menu = [
 			{title: "about", link: "about"},
+			{title: "work", link: "work"}
 		]
 
-		$data.get("http://cms.davidmassimbo.com/wp-json/wp/v2/projects", function(response){
-			console.log(JSON.parse(response));
-		})
 
 	});
 
@@ -32,10 +64,10 @@ let loadAngular = function(){
 // })();
 
 
-let ask = prompt("Password: ");
-if(ask !== password){
-	alert("Password Incorrect!");
-	// window.location.href = "http://www.malikdunston.com/";
-}else{
+// let ask = prompt("Password: ");
+// if(ask !== password){
+// 	alert("Password Incorrect!");
+// 	window.location.href = "http://www.malikdunston.com/";
+// }else{
 	loadAngular();
-}
+// }

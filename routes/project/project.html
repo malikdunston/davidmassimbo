@@ -1,0 +1,10 @@
+<h1>{{project.currentTag.name}}</h1>
+
+<article
+	ng-repeat="proj in project.currentTag.projects track by $index">
+	<p>id: {{proj.id}}</p>
+	<p>slug: {{proj.slug}}</p>
+	<div class="content" ng-bind-html="proj.content.rendered">
+		<!-- {{proj.content.rendered}} -->
+	</div>
+</article>

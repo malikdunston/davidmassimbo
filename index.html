@@ -2,17 +2,17 @@
 <html lang="en" ng-app="david" ng-controller="appCtrl as david">
 
 <head>
+	<base href="/">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>David Massimbo</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+	<script src="./assets/js/ui.router.js"></script>
 	<script src="app.js"></script>
-	<style>
-		body{font-size: 25px;}
-	</style>
 	<link rel="stylesheet" href="fonts/fonts.css">
 
 	<script>
+		window.$cms = "http://cms.davidmassimbo.com/wp-json/wp/v2/";
 		window.$data = {
 			get(filename, callback){
 				req = new XMLHttpRequest();
@@ -27,6 +27,7 @@
 				req.send();
 			}
 		}
+		// window.tags = window.$data.get($cms + "tags")
 	</script>
 </head>
 
@@ -81,14 +82,26 @@
 		width: 200px;
 		display: block;
 	}
+	ui-view{
+		background-color: whitesmoke;
+	}
+	navigation{
+		/* display: none; */
+	}
 </style>
 
 <body>
 
 	<navigation></navigation>
+	<ui-view></ui-view>
 
 </body>
 
+<script src="routes/home/home.js"></script>
+<script src="routes/project/project.js"></script>
+
 <script src="components/navigation/navigation.js"></script>
+<script src="components/work/work.js"></script>
+
 
 </html>
