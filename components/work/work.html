@@ -4,7 +4,7 @@
 		id="proj-{{tag.slug}}"
 		ng-repeat="tag in work.feed track by $index"
 		ui-sref="project({projName: tag.slug})">
-		<h4>{{tag.name}}</h4>
+		<h4>{{tag.title.rendered}}</h4>
 		<p>"/work/{{tag.slug}}"</p>
 	</div>
 </div>

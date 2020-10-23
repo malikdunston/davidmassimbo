@@ -22,7 +22,7 @@ let loadAngular = function(){
 		$urlRouterProvider.otherwise("/");
 	});
 
-	david.controller("appCtrl", function($scope, $http){
+	david.controller("appCtrl", function($scope, $http, $q){
 	let app = this;
 
 
@@ -30,22 +30,48 @@ let loadAngular = function(){
 	// get all tags
 		$http({
 			method: "GET",
-			url: window.$cms + "tags"
+			url: window.$cms + "projects?per_page=100"
 		}).then(function(res){
-			app.tags = [];
-		// group projects by tag.
-			res.data.forEach(function(tag){
-			// for every tag, search for projects with that tag's id.
-				$http({
-					method: "GET",
-					url: window.$cms + "projects?tags=" + tag.id
-				}).then(function(r){
-					tag.projects = r.data;
-					app.tags.push(tag);
-				});
-			})
-			console.log("PROJECTS: ", app.tags);
+		// is this project a parent?
+			let parents = res.data.filter(proj => proj.acf.parent == null || undefined || 0);
+			// let children = res.data.filter(proj => typeof proj.acf.parent == "number");
+
+			// console.log("parents --------------------------------   " + parents.length);
+			// parents.forEach(parent => console.log(parent.title.rendered));
+			// console.log("children --------------------------------   " + children.length);
+			// children.forEach(child => console.log(child.title.rendered, "parent: " + child.acf.parent));
+
+		// attach children to parents.
+			parents.forEach(parent => {
+				parent.children = res.data.filter(child => child.acf.parent == parent.id);
+			});
+			app.projects = parents;
 		});
+
+
+	// // get all tags
+	// 	$http({
+	// 		method: "GET",
+	// 		url: window.$cms + "tags"
+	// 	}).then(function(res){
+	// 		app.tags = [];
+	// 	// group projects by tag.
+	// 		res.data.forEach(function(tag){
+	// 		// for every tag, search for projects with that tag's id.
+	// 			$http({
+	// 				method: "GET",
+	// 				url: window.$cms + "projects?tags=" + tag.id
+	// 			}).then(function(r){
+	// 			// get an array of objects
+	// 			// attach to the tag parent.
+	// 				tag.projects = r.data;
+	// 				tag.name
+	// 			// push whole tag parent to app.tags.
+	// 				app.tags.push(tag);
+	// 			});
+	// 		})
+	// 		console.log("PROJECTS: ", app.tags);
+	// 	});
 
 
 
