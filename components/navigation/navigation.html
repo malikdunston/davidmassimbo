@@ -1,4 +1,7 @@
-<h1 ui-sref="home">{{navigation.app.title}}</h1>
-<ul>
+<div class="top" ng-init="navigation.app.navOpen = false">
+	<h1 ui-sref="home">David <br>Massimbo</h1>
+	<div class="hamburger" ng-click="navigation.app.navOpen = !navigation.app.navOpen">&#9776;</div>
+</div>
+<ul class="bottom" >
 	<li ng-repeat="x in navigation.app.menu" ui-sref="{{x.link}}">{{x.title}}</li>
 </ul>

@@ -1,0 +1,30 @@
+navigation{
+	$navHeight: 3em;
+	display: block;
+	.top{
+		height: $navHeight;
+		overflow: hidden;
+		background: white;
+		display: flex;
+		justify-content: space-between;
+		h1{
+			margin: 0;
+			font-size: 1rem;
+		}
+	}
+	.bottom{
+		display: block;
+		height: 0;
+		overflow: hidden;
+		margin: 0;
+		background: red;
+		transition: 2s all;
+	}
+	transition: 2s all;
+}
+navigation.open{
+	// background: red;
+	.bottom{
+		height: calc(100vh - 3em);
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "davidmassimbo",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"compile:sass": "node-sass assets/css/main.scss assets/css/main.css -w"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/malikdunston/davidmassimbo.git"
+	},
+	"author": "Malik Dunston",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/malikdunston/davidmassimbo/issues"
+	},
+	"homepage": "https://github.com/malikdunston/davidmassimbo#readme",
+	"devDependencies": {
+		"node-sass": "^4.14.1"
+	}
+}

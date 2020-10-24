@@ -13,15 +13,17 @@
 	var navigation = this;
 	navigation.app = $scope.$parent.david;
 	
+
+		console.log(navigation);
 	// open/close Navigation
-		navigation.app.navOpen = false;
-		navigation.openNavigation = function(){
-			if(nav.app.navOpen == false){
-				nav.app.navOpen = true
-			} else {
-				nav.app.navOpen = false
-			}
-		}
+		// navigation.app.navOpen = false;
+		// navigation.openNavigation = function(){
+		// 	if(nav.app.navOpen == false){
+		// 		nav.app.navOpen = true
+		// 	} else {
+		// 		nav.app.navOpen = false
+		// 	}
+		// }
 
 	});
 
