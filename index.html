@@ -13,21 +13,38 @@
 
 	<script>
 		window.$cms = "http://cms.davidmassimbo.com/wp-json/wp/v2/";
-		window.$data = {
-			get(filename, callback){
-				req = new XMLHttpRequest();
-				req.onreadystatechange = function(){
-					if (this.readyState == 4 && this.status == 200) {
-						if(typeof callback === "function"){
-							callback(this.responseText)
-						}
-					}
-				};
-				req.open("GET", filename, true);
-				req.send();
-			}
-		}
-		// window.tags = window.$data.get($cms + "tags")
+	// 	window.$data = {
+			// get(filename, callback){
+			// 	req = new XMLHttpRequest();
+			// 	req.onreadystatechange = function(){
+			// 		if (this.readyState == 4 && this.status == 200) {
+			// 			if(typeof callback === "function"){
+			// 				callback(this.responseText)
+			// 			}
+			// 		}
+			// 	};
+			// 	req.open("GET", filename, true);
+			// 	req.send();
+			// }
+	// 	}
+	// 	// window.tags = window.$data.get($cms + "tags")
+
+
+
+		// let projReq = new XMLHttpRequest();
+		// projReq.onreadystatechange = function(){
+		// 	if (this.readyState == 4 && this.status == 200) {
+
+		// 		// window.$projects = JSON.parse(this.responseText);
+		// 		window.$projects = this.responseText;
+		// 		console.log(this.responseText);
+
+		// 	}
+		// };
+		// projReq.open("GET", window.$cms, true);
+		// projReq.send();
+
+		// console.log(window.$projects);
 	</script>
 </head>
 
@@ -86,7 +103,7 @@
 		background-color: whitesmoke;
 	}
 	navigation{
-		display: none;
+		/* display: none; */
 	}
 </style>
 
@@ -97,8 +114,10 @@
 
 </body>
 
+<!-- Routes -->
 <script src="routes/home/home.js"></script>
 <script src="routes/project/project.js"></script>
+<script src="routes/contact/contact.js"></script>
 
 <script src="components/navigation/navigation.js"></script>
 <script src="components/work/work.js"></script>

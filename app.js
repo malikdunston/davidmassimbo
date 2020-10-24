@@ -12,6 +12,7 @@ let loadAngular = function(){
 	// routes
 		"home",
 		"project",
+		"contact",
 	// components
 		"navigation",
 		"work"
@@ -79,8 +80,17 @@ let loadAngular = function(){
 		app.title = "David Massimbo";
 		app.menu = [
 			{title: "about", link: "about"},
-			{title: "work", link: "work"}
+			{title: "work", link: "work"},
+			{title: "contact", link: "contact"},
 		]
+
+	// users and form
+		app.user = {
+			name: {
+				first: "Malik",
+				last: "Dunston"
+			}
+		}
 
 
 	});

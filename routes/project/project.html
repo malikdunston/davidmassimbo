@@ -1,10 +1,14 @@
-<h1>{{project.currentTag.name}}</h1>
+<h1>{{project.thisProj.title.rendered}}</h1>
+
+<article id="parent">
+	<p>id: {{project.thisProj.id}}</p>
+	<p>id: {{project.thisProj.title.rendered}}</p>
+	<div class="content" ng-bind-html="project.thisProj.content.rendered"></div>
+</article>
 
 <article
-	ng-repeat="proj in project.currentTag.projects track by $index">
+	ng-repeat="proj in project.thisProj.children track by $index">
 	<p>id: {{proj.id}}</p>
 	<p>slug: {{proj.slug}}</p>
-	<div class="content" ng-bind-html="proj.content.rendered">
-		<!-- {{proj.content.rendered}} -->
-	</div>
+	<div class="content" ng-bind-html="proj.content.rendered"></div>
 </article>
