@@ -1,13 +1,12 @@
 	h1{
 		margin: 3rem 0 1rem;
 		line-height: 1em;
-		font-family: "Gotham";
 	}
 	html, body{
 		margin: 0;
 		padding: 0;
 		display: block;
-		font-family: 'Gotham Book';
+		font-family: 'Helvetica Neue LT Std';
 	}
 	ul{
 		padding: 0;
@@ -20,33 +19,6 @@
 	}
 	:root{
 		font-size: 30px;
-	}
-	.box{
-		height: 0px;
-		transition: 2s;
-	}
-	.box.hidden{
-		height: 50vh;
-	}
-	.content{
-		font-family: 'Gotham Book'!important; 
-		margin: 0 20vw;
-		opacity: 1;
-		transition: 4s;
-		font-size: .5rem;
-		line-height: 1.5em;
-		letter-spacing: .033em;
-	}
-	p{
-		font-weight: 300!important;
-	}
-	.hidden{
-		font-family: "Gotham Book"!important;
-		opacity: 0;
-	}
-	#signature{
-		width: 200px;
-		display: block;
 	}
 	ui-view{
 		background-color: whitesmoke;
