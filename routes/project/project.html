@@ -1,14 +1,19 @@
-<h1>{{project.thisProj.title.rendered}}</h1>
-
-<article id="parent">
-	<p>id: {{project.thisProj.id}}</p>
-	<p>id: {{project.thisProj.title.rendered}}</p>
-	<div class="content" ng-bind-html="project.thisProj.content.rendered"></div>
-</article>
+<header>
+	<div class="lockup">
+		<h1>{{project.thisProj.title.rendered}}</h1>
+		<p>{{project.thisProj.description}}</p>
+	</div>
+	<button>&#x2B07;</button>
+</header>
 
 <article
 	ng-repeat="proj in project.thisProj.children track by $index">
-	<p>id: {{proj.id}}</p>
-	<p>slug: {{proj.slug}}</p>
-	<div class="content" ng-bind-html="proj.content.rendered"></div>
+	<h1>{{proj.title.rendered}}</h1>
+	<div ng-repeat="node in proj.content.data">
+		<p>{{node.text}}</p>
+		<figure>
+			<img ng-src="{{node.img}}" alt="{{node.img}}"/>
+			<figcaption>{{node.caption}}</figcaption>
+		</figure>
+	</div>
 </article>

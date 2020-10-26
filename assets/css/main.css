@@ -1,10 +1,8 @@
 navigation {
-  display: block;
-  transition: 2s all; }
+  display: block; }
   navigation .top {
-    height: 3em;
+    height: 3rem;
     overflow: hidden;
-    background: white;
     display: flex;
     justify-content: space-between; }
     navigation .top h1 {
@@ -15,10 +13,9 @@ navigation {
     height: 0;
     overflow: hidden;
     margin: 0;
-    background: red;
     transition: 2s all; }
 
-navigation.open .bottom {
+body.open navigation .bottom {
   height: calc(100vh - 3em); }
 
 h1 {
@@ -47,4 +44,5 @@ ui-view {
   background-color: whitesmoke; }
 
 body {
-  background: purple; }
+  background: #CECCC4;
+  color: #262522; }

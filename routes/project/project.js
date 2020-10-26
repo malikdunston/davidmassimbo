@@ -45,23 +45,18 @@
 	var project = this;
 	project.app = $scope.$parent.david;
 
-		if($stateParams.projName == undefined){
-			window.location = "google.com"
-		}else {
-
-		}
-
-		console.log($stateParams.projName);
-	
 		project.thisProj = thisProj[0];
 		project.thisProj.content.rendered = $sce.trustAsHtml(project.thisProj.content.rendered);
 		project.thisProj.children = allProj.filter(proj => proj.acf.parent == project.thisProj.id);
 
 		project.thisProj.children.forEach(proj => {
 			proj.content.rendered = $sce.trustAsHtml(proj.content.rendered);
-			console.log(proj.content.rendered);
 		})
 
+		project.app.getContent(thisProj);
+		project.app.getContent(project.thisProj.children);
+
+		console.log(project);
 
 	});
 
