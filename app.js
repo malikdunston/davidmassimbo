@@ -26,7 +26,7 @@
 			url: window.$cms + "projects?per_page=100"
 		}).then(function(res){
 			res.data.forEach(project => {
-				app.parseContent(project, res.data);
+				app.parseContent(project);
 				app.getCoverImg(project);
 			});
 			let newData = app.structureData(res.data);
@@ -52,7 +52,7 @@
 
 	// need to parse the images with their data from each proj.
 	// this is done for all project, parent or child.
-		app.parseContent = function(project, data){
+		app.parseContent = function(project){
 		// get nodes. either figure or p tags.
 		// and attach to project.content.data!!!
 		// so we can get raw html.
@@ -80,11 +80,11 @@
 				}
 			});
 			
-		// is it a parent?
-			let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
-			parents.map(function(obj){
-				obj.rela = "parent"
-			});
+		// // is it a parent?
+		// 	let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
+		// 	parents.map(function(obj){
+		// 		obj.rela = "parent"
+		// 	});
 
 
 			return project

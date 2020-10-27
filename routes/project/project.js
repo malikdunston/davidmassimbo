@@ -46,15 +46,16 @@
 	project.app = $scope.$parent.david;
 
 		project.thisProj = thisProj[0];
-		project.thisProj.content.rendered = $sce.trustAsHtml(project.thisProj.content.rendered);
+		// project.thisProj.content.rendered = $sce.trustAsHtml(project.thisProj.content.rendered);
 		project.thisProj.children = allProj.filter(proj => proj.acf.parent == project.thisProj.id);
 
 		project.thisProj.children.forEach(proj => {
-			proj.content.rendered = $sce.trustAsHtml(proj.content.rendered);
+			project.app.parseContent(proj);
 		})
 
-		project.app.getContent(thisProj);
-		project.app.getContent(project.thisProj.children);
+		console.log(thisProj[0]);
+
+		project.app.parseContent(thisProj[0]);
 
 		console.log(project);
 

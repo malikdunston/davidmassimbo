@@ -10,10 +10,10 @@
 	ng-repeat="proj in project.thisProj.children track by $index">
 	<h1>{{proj.title.rendered}}</h1>
 	<div ng-repeat="node in proj.content.data">
-		<p>{{node.text}}</p>
+		<p ng-if="node.text">{{node.text}}</p>
 		<figure>
-			<img ng-src="{{node.img}}" alt="{{node.img}}"/>
-			<figcaption>{{node.caption}}</figcaption>
+			<img ng-if="node.img" ng-src="{{node.img}}" alt="{{node.img}}"/>
+			<figcaption ng-if="node.caption">{{node.caption}}</figcaption>
 		</figure>
 	</div>
 </article>

@@ -61,6 +61,12 @@ div[id^="proj-"] {
   div[id^="proj-"] .lockup h6 {
     margin: .5em .5em; }
 
+figure {
+  margin: 0; }
+  figure img {
+    width: 100%;
+    position: relative; }
+
 body {
   background: #CECCC4;
   color: #262522; }
