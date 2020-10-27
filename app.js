@@ -1,4 +1,4 @@
-const { networkInterfaces } = require("os");
+// const { networkInterfaces } = require("os");
 
 (function(){
 
@@ -19,69 +19,95 @@ const { networkInterfaces } = require("os");
 	});
 
 	david.controller("appCtrl", function($scope, $http, $q){
-		let app = this;
+	let app = this;
 
-	// get, organize projects!
 		$http({
 			method: "GET",
 			url: window.$cms + "projects?per_page=100"
 		}).then(function(res){
-		// get the content from each project into series of images.
-			let data = app.getContent(res);
+			res.data.forEach(project => {
+				app.parseContent(project, res.data);
+				app.getCoverImg(project);
+			});
+			let newData = app.structureData(res.data);
+			// app.projects = app.getCoverImg(newData);
+
+			newData.forEach(parentProj => {
+				if(parentProj.cover == undefined || parentProj.cover == null){
+					parentProj.cover = parentProj.children[0].content.data[0].img;
+				}
+			});
+			console.log(newData);
+		});
+
+		app.structureData = function(data){
 		// Then sort the projects
 		// is this project a parent?
 			let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
 		// attach children to parents.
 			parents.forEach(parent => {
+				parent.rela = "parent";
 				parent.children = data.filter(child => child.acf.parent == parent.id);
 			});
-			app.projects = parents;
-		});
+			return parents
+		}
 
 	// need to parse the images with their data from each proj.
-	// this is done for all projs, parent or child.
-		app.getContent = function(res){
-			this.getCoverImg = function(proj){
-				let x = proj.content.data.filter(elem => elem.tag == "img")
-				proj.coverImg = proj.content.data[0]
-			}
-			let data = res.data || res; // for proj route
-			data.forEach(proj => {
-			// create an array of either paragraphs or figure tags.
-				proj.content.data = [];
-			// create html object so you can inject response inside
-			// div
-				let html = document.createElement("div");
-				html.innerHTML = proj.content.rendered;
-			// get nodes. either figure or p tags.
-			// and attach to proj.content.data!!!
-			// so we can get raw html.
-				html.childNodes.forEach(node => {
-					if(node.nodeType !== 3 || node.nodeType != Node.TEXT_NODE){
-						let obj = {};
-						if(node.tagName == "P"){
-							obj.text = node.innerHTML;
-							obj.tag = "p";
-							// proj.content.data.push(node.innerHTML);
-						}else{ // FIGURE = one image and maybe one caption.
-							node.childNodes.forEach(figNode => {
-								if(figNode.tagName == "IMG"){
-									obj.img = figNode.src;
-									obj.tag = "img";
-								}else if(figNode.tagName == "FIGCAPTION"){
-									obj.caption = figNode.innerHTML;
-									obj.tag = "figcaption";
-								}
-							});
-						}
-						proj.content.data.push(obj);
+	// this is done for all project, parent or child.
+		app.parseContent = function(project, data){
+		// get nodes. either figure or p tags.
+		// and attach to project.content.data!!!
+		// so we can get raw html.
+			project.content.data = [];
+			let projNode = document.createElement("div");
+			projNode.innerHTML = project.content.rendered;
+			projNode.childNodes.forEach(node => {
+				if(node.nodeType !== 3 || node.nodeType != Node.TEXT_NODE){
+					let obj = {};
+					if(node.tagName == "P"){
+						obj.text = node.innerHTML;
+						obj.tag = "p";
+					}else{ // FIGURE = one image and maybe one caption.
+						node.childNodes.forEach(figNode => {
+							if(figNode.tagName == "IMG"){
+								obj.img = figNode.src;
+								obj.tag = "img";
+							}else if(figNode.tagName == "FIGCAPTION"){
+								obj.caption = figNode.innerHTML;
+								obj.tag = "figcaption";
+							}
+						});
 					}
-				});
-			// take the first image in proj.content.data and
-			// make it the cover image for now.
-				this.getCoverImg(proj);
-			})
-			return data
+					project.content.data.push(obj);
+				}
+			});
+			
+		// is it a parent?
+			let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
+			parents.map(function(obj){
+				obj.rela = "parent"
+			});
+
+
+			return project
+		}
+
+		app.getCoverImg = function(project, rela){
+			// var defaultCover = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*";
+			let images = project.content.data.filter(elem => elem.tag == "img" || elem.tag == "figcaption");
+			if (images.length > 0){
+				project.cover = images[0].img;
+			}else
+		// is the project a parent?
+
+
+
+
+
+
+			return project
+
+			// console.log(project.title.rendered, project.cover, project);
 		}
 
 	});

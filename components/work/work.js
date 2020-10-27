@@ -17,6 +17,7 @@
 	work.app = $scope.$parent.david;
 	
 		work.$onInit = function(){
+			console.log(work);
 		}
 
 	});
