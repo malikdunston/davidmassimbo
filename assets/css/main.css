@@ -18,6 +18,9 @@ navigation {
 body.open navigation .bottom {
   height: calc(100vh - 3em); }
 
+work {
+  width: 100%; }
+
 h1 {
   margin: 3rem 0 1rem;
   line-height: 1em; }
@@ -42,6 +45,21 @@ li {
 
 ui-view {
   background-color: whitesmoke; }
+
+div[id^="proj-"] {
+  width: 50%;
+  float: left;
+  min-height: 10rem; }
+  div[id^="proj-"]:nth-child(even) {
+    padding: 0 .25em .5em .5em; }
+  div[id^="proj-"]:nth-child(odd) {
+    padding: 0 .5em .5em .25em; }
+  div[id^="proj-"] .cover {
+    height: 5em;
+    background-attachment: center;
+    background-size: cover; }
+  div[id^="proj-"] .lockup h6 {
+    margin: .5em .5em; }
 
 body {
   background: #CECCC4;

@@ -1,10 +1,13 @@
-<h3>All Projects</h3>
-<div>
-	<div 
-		id="proj-{{tag.slug}}"
-		ng-repeat="tag in work.feed track by $index"
-		ui-sref="project({projName: tag.slug})">
-		<h4>{{tag.title.rendered}}</h4>
-		<p>"/work/{{tag.slug}}"</p>
+<h6>All Projects</h6>
+<div 
+	id="proj-{{proj.slug}}"
+	ng-repeat="proj in work.feed track by $index"
+	ui-sref="project({projName: proj.slug})">
+	<div class="cover"
+		style="background: url({{proj.cover}});">
+	</div>
+	<div class="lockup">
+		<h6>{{proj.title.rendered}}</h6>
+		<!-- <p>"/work/{{tag.slug}}"</p> -->
 	</div>
 </div>

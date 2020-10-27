@@ -30,14 +30,12 @@
 				app.getCoverImg(project);
 			});
 			let newData = app.structureData(res.data);
-			// app.projects = app.getCoverImg(newData);
-
 			newData.forEach(parentProj => {
 				if(parentProj.cover == undefined || parentProj.cover == null){
 					parentProj.cover = parentProj.children[0].content.data[0].img;
 				}
 			});
-			console.log(newData);
+			app.projects = newData;
 		});
 
 		app.structureData = function(data){
