@@ -18,7 +18,7 @@
 		$urlRouterProvider.otherwise("/");
 	});
 
-	david.controller("appCtrl", function($scope, $http, $q){
+	david.controller("appCtrl", function($scope, $http, $q, $transitions){
 	let app = this;
 
 		$http({
@@ -107,6 +107,19 @@
 
 			// console.log(project.title.rendered, project.cover, project);
 		}
+
+	// on route change, do this...
+		$transitions.onSuccess({}, function ($transition) {
+			app.route = {
+				from: $transition.$from().name,
+				to: $transition.$to().name,
+				params: $transition.params().name
+			};
+			app.routeClass = app.route.to;
+			if(app.navOpen == true){
+				app.navOpen = false;
+			}
+		});
 
 	});
 
