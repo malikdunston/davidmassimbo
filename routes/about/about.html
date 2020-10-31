@@ -1,7 +1,13 @@
-<img ng-src="{{about.img}}" alt="">
+<img ng-src="{{about.data[0].html[0].img}}" alt="">
 
-<div
-	ng-repeat="section in about.data">
-	<h6>{{section.header}}</h6>
-	<p>{{section.content}}</p>
-</div>
+<section
+	ng-repeat="item in about.data | orderBy: 'id'"
+	ng-class="item.slug"
+	ng-if="item.slug !== 'photo'">
+	<h6>{{item.title}}</h6>
+	<div class="cont">
+		<p ng-repeat="p in item.html">{{p.text}}</p>
+	</div>
+</section>
+
+<button class="sticky" ui-sref="contact">Contact</button>

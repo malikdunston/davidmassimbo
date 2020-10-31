@@ -1,9 +1,15 @@
+
 <h1>Hello, {{contact.app.user.name.first}}</h1>
 
 <form action="" novalidate>
 
-	<label for="#name"></label>
-	<input type="text" id+"name" >
+	<label for="#name">First Name</label>
+	<input type="text" id="name" placeholder="name" value="{{contact.app.user.name.first}}">
+	<label for="#name">Last Name</label>
+	<input type="text" id="name" placeholder="name" value="{{contact.app.user.name.last}}">
+	<label for="#name">Phone Number</label>
+	<input type="text" id="name" placeholder="number" value="{{contact.app.user.phone}}">
+	
 </form>
 
-<button ng-click="contact.">Connect</button>
+<button ng-click="contact.sendForm(contact.app.user)">Connect</button>

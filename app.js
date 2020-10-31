@@ -8,6 +8,7 @@
 		"home",
 		"project",
 		"contact",
+		"about",
 	// components
 		"navigation",
 		"work"
@@ -29,33 +30,22 @@
 				app.parseContent(project);
 				app.getCoverImg(project);
 			});
-			let newData = app.structureData(res.data);
-			newData.forEach(parentProj => {
-				if(parentProj.cover == undefined || parentProj.cover == null){
-					parentProj.cover = parentProj.children[0].content.data[0].img;
-				}
-			});
-			app.projects = newData;
+			app.projects = app.structureData(res.data);
 		});
 
 		app.structureData = function(data){
-		// Then sort the projects
-		// is this project a parent?
 			let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
-		// attach children to parents.
 			parents.forEach(parent => {
 				parent.rela = "parent";
 				parent.children = data.filter(child => child.acf.parent == parent.id);
+				if(parent.cover == undefined || parent.cover == null){
+					parent.cover = parent.children[0].content.data[0].img;
+				}
 			});
 			return parents
 		}
 
-	// need to parse the images with their data from each proj.
-	// this is done for all project, parent or child.
 		app.parseContent = function(project){
-		// get nodes. either figure or p tags.
-		// and attach to project.content.data!!!
-		// so we can get raw html.
 			project.content.data = [];
 			let projNode = document.createElement("div");
 			projNode.innerHTML = project.content.rendered;
@@ -79,33 +69,15 @@
 					project.content.data.push(obj);
 				}
 			});
-			
-		// // is it a parent?
-		// 	let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
-		// 	parents.map(function(obj){
-		// 		obj.rela = "parent"
-		// 	});
-
-
 			return project
 		}
 
 		app.getCoverImg = function(project, rela){
-			// var defaultCover = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*";
 			let images = project.content.data.filter(elem => elem.tag == "img" || elem.tag == "figcaption");
 			if (images.length > 0){
 				project.cover = images[0].img;
-			}else
-		// is the project a parent?
-
-
-
-
-
-
+			}
 			return project
-
-			// console.log(project.title.rendered, project.cover, project);
 		}
 
 	// on route change, do this...

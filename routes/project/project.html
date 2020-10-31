@@ -4,7 +4,22 @@
 		<p>{{project.thisProj.description}}</p>
 	</div>
 	<button>&#x2B07;</button>
+	<div
+		class="background"
+		style="background-image: url('{{project.thisProj.cover}}')">
+	</div>
 </header>
+
+<article
+	ng-if="project.thisProj.content.data.length > 0">
+	<div ng-repeat="node in project.thisProj.content.data">
+		<p ng-if="node.text">{{node.text}}</p>
+		<figure>
+			<img ng-if="node.img" ng-src="{{node.img}}" alt="{{node.img}}"/>
+			<figcaption ng-if="node.caption">{{node.caption}}</figcaption>
+		</figure>
+	</div>
+</article>
 
 <article
 	ng-repeat="proj in project.thisProj.children track by $index">

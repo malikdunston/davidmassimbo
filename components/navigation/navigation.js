@@ -16,8 +16,8 @@
 	// page stuff
 		navigation.app.menu = [
 			{title: "about", link: "about"},
-			{title: "work", link: "work"},
-			{title: "contact", link: "contact"},
+			{title: "work", link: "home"},
+			{title: "contact", link: "contact"}
 		]
 
 	});

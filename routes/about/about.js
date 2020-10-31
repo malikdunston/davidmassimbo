@@ -13,20 +13,10 @@
 		controllerAs: "about",
 		resolve: {
 			aboutData: function($http){
-				$http({
+				return $http({
 					method: "GET",
 					url: window.$cms + "about?per_page=100"
 				}).then(function(res){
-					// res.data.forEach(project => {
-						// app.parseContent(project);
-						// app.getCoverImg(project);
-					// });
-					// let newData = app.structureData(res.data);
-					// newData.forEach(parentProj => {
-					// 	if(parentProj.cover == undefined || parentProj.cover == null){
-					// 		parentProj.cover = parentProj.children[0].content.data[0].img;
-					// 	}
-					// });
 					return res.data
 				});
 			}
@@ -37,7 +27,19 @@
 	var about = this;
 	about.app = $scope.$parent.david;
 	
-		about.data = aboutData;
+		let view = [];
+
+		aboutData.forEach(post => {
+			let obj = {};
+			obj.id = post.id;
+			obj.html = about.app.parseContent(post).content.data;
+			obj.title = post.title.rendered;
+			obj.slug = post.slug;
+			view.push(obj);
+		})
+
+		about.data = view;
+
 		console.log(about);
 
 	});
