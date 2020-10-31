@@ -11,7 +11,8 @@
 		"about",
 	// components
 		"navigation",
-		"work"
+		"work",
+		"carousel"
 	]);
 
 	david.config(function($locationProvider, $urlRouterProvider){
@@ -78,7 +79,7 @@
 				project.cover = images[0].img;
 			}
 			return project
-		}
+		} 
 
 	// on route change, do this...
 		$transitions.onSuccess({}, function ($transition) {
