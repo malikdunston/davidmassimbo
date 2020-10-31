@@ -33,23 +33,20 @@
 		}	
 	})});
 
-	project.controller("projectCtrl", function($scope, allProj, thisProj) {
+	project.controller("projectCtrl", function($stateParams, $scope, allProj, thisProj) {
 	var project = this;
 	project.app = $scope.$parent.david;
 
+		let children = allProj.filter(proj => proj.acf.parent == thisProj[0].id);
 
+		let theseProj = [...children, ...thisProj];
 
-		project.thisProj = thisProj[0];
-
-		project.thisProj.children = allProj.filter(proj => proj.acf.parent == project.thisProj.id);
-
-		project.thisProj.children.forEach(proj => {
+		theseProj.forEach(proj => {
 			project.app.parseContent(proj);
-		})
+			project.app.getCoverImg(proj);
+		});
 
-		project.app.parseContent(thisProj[0]);
-
-		console.log(project);
+		project.thisProj = project.app.structureData(theseProj).filter(proj => proj.slug == $stateParams.projName)[0];
 
 	});
 
