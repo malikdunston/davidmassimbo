@@ -1,9 +1,9 @@
 <header>
 	<div class="lockup">
 		<h1>{{project.thisProj.title.rendered}}</h1>
-		<p>{{project.thisProj.description}}</p>
+		<!-- <p>{{project.thisProj.description}}</p> -->
 	</div>
-	<button>&#x2B07;</button>
+	<div class="explore" ng-click="project.scrollDown()">&#x2B07;</div>
 	<div
 		class="background"
 		style="background-image: url('{{project.thisProj.cover}}')">

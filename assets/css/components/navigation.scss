@@ -1,21 +1,37 @@
 navigation{
 	display: block;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	overflow: hidden;
+	background: $light;
 	.top{
-		height: 3rem;
+		height: 2em;
 		overflow: hidden;
+		// background: pink;
 		display: flex;
 		justify-content: space-between;
-		h1{
+		align-items: center;
+		padding: .5em;
+		.logo{
 			margin: 0;
-			font-size: 1rem;
+			font-size: .5em;
+			line-height: 1em;
+		}
+		.hamburger{
+			font-size: .75em;
+			text-align: center;
+			// font-weight: bold;
 		}
 	}
 	.bottom{
+		padding: 0 .5em;
+		// background: $light;
 		display: block;
 		height: 0;
 		overflow: hidden;
 		margin: 0;
-		transition: 2s all;
+		transition: .333s all;
 	}
 }
 body.open{

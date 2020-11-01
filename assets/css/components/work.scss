@@ -1,23 +1,30 @@
 work{
-	width: 100%;
-	div[id^="proj-"]{
+	display: block;
+	width: auto;
+	margin: 0 .5em .5em .5em;
+	> h6{
+		margin-bottom: .5rem;
+	}
+	.project{
+		padding: 0 0 .25em 0;
 		width: 50%;
-		float: left;
-		min-height: 10rem; 
+		display: inline-block;
+		vertical-align: top;
 		&:nth-child(even){
-			padding: 0 .25em .5em .5em;
+			padding-right: .25em;
 		}
 		&:nth-child(odd){
-			padding: 0 .5em .5em .25em;
+			padding-left: .25em;
 		}
 		.cover{
-			height: 5em;
+			height: 33vw; // maintain an aspect ratio
 			background-position: center!important;
 			background-size: cover!important;
 		}
 		.lockup{
 			h6{
-				margin: .5em .5em;
+				margin: .5em 0 .5em 0;
+				font-size: .5em;
 			}
 		}
 	}

@@ -18,7 +18,6 @@
 	
 		carousel.$onInit = function(){
 			console.log(carousel);
-			// console.log(carousel);
 		}
 
 		let wrapper = document.querySelector('.wrapper');
@@ -55,7 +54,7 @@
 			})
 		}, false);
 
-		carousel.rotation = setInterval(carousel.move.up, 3000);
+		carousel.rotation = setInterval(carousel.move.up, 5000);
 
 		carousel.pause = function(){
 			clearInterval(carousel.rotation);
@@ -63,6 +62,5 @@
 	});
 
 
-	// carousel.directive("feed")
 
 })();

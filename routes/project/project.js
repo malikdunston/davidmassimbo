@@ -48,6 +48,14 @@
 
 		project.thisProj = project.app.structureData(theseProj).filter(proj => proj.slug == $stateParams.projName)[0];
 
+		project.scrollDown = function(){
+			window.scroll({
+				top: 640, 
+				left: 0, 
+				behavior: 'smooth' 
+			});
+		}
+
 	});
 
 })();
