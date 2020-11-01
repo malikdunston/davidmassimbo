@@ -32,13 +32,14 @@
 				app.getCoverImg(project);
 			});
 			app.projects = app.structureData(res.data);
+			app.projects.homepage = app.projects.filter(proj => proj.acf.homepage == true);
 		});
 
 		app.structureData = function(data){
-			let parents = data.filter(proj => typeof proj.acf.parent !== "number" || proj.acf.parent === 0);
+			let parents = data.filter(proj => proj.parent === 0);
 			parents.forEach(parent => {
 				parent.rela = "parent";
-				parent.children = data.filter(child => child.acf.parent == parent.id);
+				parent.children = data.filter(child => child.parent == parent.id);
 				if(parent.cover == undefined || parent.cover == null){
 					parent.cover = parent.children[0].content.data[0].img;
 				}

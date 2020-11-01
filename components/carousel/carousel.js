@@ -16,9 +16,10 @@
 	var carousel = this;
 	carousel.app = $scope.$parent.david;
 	
-		// carousel.$onInit = function(){
-		// 	console.log(carousel);
-		// }
+		carousel.$onInit = function(){
+			console.log(carousel);
+			// console.log(carousel);
+		}
 
 		let wrapper = document.querySelector('.wrapper');
 		let feed = document.querySelector('.feed');
@@ -27,20 +28,17 @@
 
 		carousel.move = {
 			up(){
-				clearInterval(carousel.rotation);
 				order = -1;
 				wrapper.style.justifyContent = 'flex-start';
 				feed.style.transform = 'translate(-100%)';
 			},
 			down(){
-				clearInterval(carousel.rotation);
 				if (order === -1) {
 					order = 1;
 					feed.appendChild(feed.firstElementChild);
 				}
 				wrapper.style.justifyContent = 'flex-end';
 				feed.style.transform = 'translate(100%)';
-				// feed.style.transform = 'translate(20%)';
 			}
 		}
 
@@ -59,6 +57,9 @@
 
 		carousel.rotation = setInterval(carousel.move.up, 3000);
 
+		carousel.pause = function(){
+			clearInterval(carousel.rotation);
+		}
 	});
 
 

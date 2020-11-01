@@ -1,17 +1,23 @@
 <div class="wrapper">
 	<div class="feed">
-		<section class="n1">1</section>
-		<section class="n2">2</section>
-		<section class="n3">3</section>
+		<section 
+			class="project"
+			ng-repeat="proj in carousel.feed"
+			ui-sref="project({projName: proj.slug})">
+			<div class="lockup">
+				<h4>{{proj.title.rendered}}</h4>
+			</div>
+			<div class="bg" style="background-image: url({{proj.cover}});"></div>
+		</section>
 	</div>
 </div>
 <button 
 	class="down"
-	ng-click="clearInterval(carousel.rotation); carousel.move.down()">
+	ng-click="carousel.pause(); carousel.move.down()">
 	<
 </button>
 <button 
 	class="up"
-	ng-click="clearInterval(carousel.rotation); carousel.move.up()">
+	ng-click="carousel.pause(); carousel.move.up()">
 	>
 </button>

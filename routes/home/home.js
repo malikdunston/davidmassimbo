@@ -14,8 +14,10 @@
 	home.controller("homeCtrl", function($scope) {
 	var home = this;
 	home.app = $scope.$parent.david;
-	
-
+		// let x = home.app;
+		// console.log(x);
+		// home.carousel = x.filter(proj => proj.acf.homepage == true);
+		// home.projects = home.app.projects.filter(proj => proj.acf.homepage !== true);
 
 	});
 
