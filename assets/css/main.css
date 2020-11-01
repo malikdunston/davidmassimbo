@@ -27,24 +27,9 @@ body {
   background: #CECCC4;
   color: #262522; }
 
-div[id^="proj-"] {
-  width: 50%;
-  float: left;
-  min-height: 10rem; }
-  div[id^="proj-"]:nth-child(even) {
-    padding: 0 .25em .5em .5em; }
-  div[id^="proj-"]:nth-child(odd) {
-    padding: 0 .5em .5em .25em; }
-  div[id^="proj-"] .cover {
-    height: 5em;
-    background-attachment: center;
-    background-size: cover; }
-  div[id^="proj-"] .lockup h6 {
-    margin: .5em .5em; }
-
-figure {
+body.project figure {
   margin: 0; }
-  figure img {
+  body.project figure img {
     width: 100%;
     position: relative; }
 
@@ -70,11 +55,25 @@ body.open navigation .bottom {
 
 work {
   width: 100%; }
+  work div[id^="proj-"] {
+    width: 50%;
+    float: left;
+    min-height: 10rem; }
+    work div[id^="proj-"]:nth-child(even) {
+      padding: 0 .25em .5em .5em; }
+    work div[id^="proj-"]:nth-child(odd) {
+      padding: 0 .5em .5em .25em; }
+    work div[id^="proj-"] .cover {
+      height: 5em;
+      background-position: center !important;
+      background-size: cover !important; }
+    work div[id^="proj-"] .lockup h6 {
+      margin: .5em .5em; }
 
 carousel {
   width: auto;
   margin: 0 20px;
-  height: 250px;
+  height: 200px;
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
@@ -97,10 +96,11 @@ carousel {
           position: absolute;
           bottom: 10px;
           left: 10px;
-          width: 100%;
+          width: 70%;
           z-index: 2; }
-          carousel .wrapper .feed section.project .lockup h4 {
-            color: #CECCC4; }
+          carousel .wrapper .feed section.project .lockup h3 {
+            color: #CECCC4;
+            margin: 0; }
         carousel .wrapper .feed section.project .bg {
           position: absolute;
           width: 100%;
@@ -120,7 +120,7 @@ carousel {
   carousel button {
     font-size: 25px;
     position: absolute;
-    top: 120px;
+    top: 80px;
     background: none;
     border: none;
     cursor: pointer;

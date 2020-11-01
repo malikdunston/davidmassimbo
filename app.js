@@ -84,6 +84,7 @@
 
 	// on route change, do this...
 		$transitions.onSuccess({}, function ($transition) {
+			window.scrollTo(0, 0);
 			app.route = {
 				from: $transition.$from().name,
 				to: $transition.$to().name,

@@ -1,15 +1,77 @@
+<header class="text">
 
-<h1>Hello, {{contact.app.user.name.first}}</h1>
+	<h1 ng-if="contact.app.user.name.first">
+		Hello, 
+		{{contact.app.user.name.first}}
+	</h1>
 
-<form action="" novalidate>
+	<button class="error validationerror" 
+		ng-if="contact.myForm.firstname.$invalid && contact.myForm.firstname.$touched">
+		FN?
+	</button>
+	<button class="error validationerror" 
+		ng-if="contact.myForm.lastname.$invalid && contact.myForm.lastname.$touched">
+		LN?
+	</button>
+	<button class="error validationerror" 
+		ng-if="(contact.myForm.emal.$invalid && contact.myForm.emal.$touched) && (contact.myForm.phone.$invalid && contact.myForm.phone.$touched)">
+		email or phone?
+	</button>
+	<button class="error validationerror" 
+		ng-if="contact.myForm.needs.$invalid && contact.myForm.needs.$touched">
+		Needs?
+	</button>
 
-	<label for="#name">First Name</label>
-	<input type="text" id="name" placeholder="name" value="{{contact.app.user.name.first}}">
-	<label for="#name">Last Name</label>
-	<input type="text" id="name" placeholder="name" value="{{contact.app.user.name.last}}">
-	<label for="#name">Phone Number</label>
-	<input type="text" id="name" placeholder="number" value="{{contact.app.user.phone}}">
+</header>
+
+
+<form 
+	name="contact.myForm" 
+	ng-submit="contact.register(contact.app.user)" 
+	novalidate>
+
+	<label for="#firstname">First Name</label>
+	<input type="text" 
+		id="firstname"
+		name="firstname" 
+		placeholder="First Name"
+		ng-model="contact.app.user.name.first"
+		ng-required="true">
+
+	<label for="#lastname">Last Name</label>
+	<input type="text" 
+		id="lastname"
+		name="lastname" 
+		placeholder="Last Name"
+		ng-model="contact.app.user.name.last"
+		ng-required="true">
+
+	<label for="#phone">Phone Number</label>
+	<input type="text" 
+		id="phone"
+		name="phone" 
+		placeholder="+1 (000) 123-4567"
+		ng-model="contact.app.user.contact.phone"
+		ng-required="true">
+
+	<label for="#email">Email</label>
+	<input type="text" 
+		id="email"
+		name="email" 
+		placeholder="person@mail.com"
+		ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/"
+		ng-model="contact.app.user.contact.email"
+		ng-required="true">
+
+	<label for="#needs">How can I help you?</label>
+	<textarea type="text" 
+		id="needs"
+		name="needs" 
+		placeholder="Please be as specific as possible so that I may help you as best I can."
+		ng-model="contact.app.user.needs"
+		ng-required="true">
+	</textarea>
+
+	<button>Connect</button>
 	
 </form>
-
-<button ng-click="contact.sendForm(contact.app.user)">Connect</button>
