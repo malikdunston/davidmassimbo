@@ -16,56 +16,52 @@
 	var carousel = this;
 	carousel.app = $scope.$parent.david;
 	
-		carousel.$onInit = function(){
-			console.log(carousel);
-		}
+		// carousel.$onInit = function(){
+		// 	console.log(carousel);
+		// }
 
-		const eventsWrapper = document.querySelector('body');
-		const slider = document.querySelector('.slider');
+		let wrapper = document.querySelector('.wrapper');
+		let feed = document.querySelector('.feed');
 
-		const forward = document.querySelector('.forward');
-		const backwards = document.querySelector('.backwards');
 		let order;
 
-		function moveup(){
-			order = -1;
-			eventsWrapper.style.justifyContent = 'flex-start';
-			slider.style.transform = 'translate(-20%)';
-		}
-
-		function movedown(){
-			if (order === -1) {
-				order = 1;
-				slider.appendChild(slider.firstElementChild);
+		carousel.move = {
+			up(){
+				clearInterval(carousel.rotation);
+				order = -1;
+				wrapper.style.justifyContent = 'flex-start';
+				feed.style.transform = 'translate(-100%)';
+			},
+			down(){
+				clearInterval(carousel.rotation);
+				if (order === -1) {
+					order = 1;
+					feed.appendChild(feed.firstElementChild);
+				}
+				wrapper.style.justifyContent = 'flex-end';
+				feed.style.transform = 'translate(100%)';
+				// feed.style.transform = 'translate(20%)';
 			}
-			eventsWrapper.style.justifyContent = 'flex-end';
-			slider.style.transform = 'translate(20%)';
 		}
 
-		forward.addEventListener('click', function () {
-			moveup();
-		});
-
-		backwards.addEventListener('click', function () {
-			clearInterval(go);
-			movedown();
-		});
-
-		slider.addEventListener('transitionend', function () {
+		feed.addEventListener('transitionend', function () {
 			if (order === 1) {
-				slider.prepend(slider.lastElementChild);
+				feed.prepend(feed.lastElementChild);
 			} else {
-				slider.appendChild(slider.firstElementChild);
+				feed.appendChild(feed.firstElementChild);
 			}
-			slider.style.transition = 'none';
-			slider.style.transform = 'translate(0)';
+			feed.style.transition = 'none';
+			feed.style.transform = 'translate(0)';
 			setTimeout(() => {
-				slider.style.transition = 'all 0.5s';
+				feed.style.transition = 'all 0.5s';
 			})
 		}, false);
 
-		let go = setInterval(moveup, 3000);
+		carousel.rotation = setInterval(carousel.move.up, 3000);
 
 	});
+
+
+	// carousel.directive("feed")
 
 })();
