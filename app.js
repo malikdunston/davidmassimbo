@@ -12,7 +12,7 @@
 	// components
 		"navigation",
 		"work",
-		"carousel"
+		"slider"
 	]);
 
 	david.config(function($locationProvider, $urlRouterProvider){
@@ -32,7 +32,7 @@
 				app.getCoverImg(project);
 			});
 			app.projects = app.structureData(res.data);
-			app.projects.homepage = app.projects.filter(proj => proj.acf.homepage == true);
+			// app.projects.homepage = app.projects.filter(proj => proj.acf.homepage == true);
 		});
 
 		app.structureData = function(data){

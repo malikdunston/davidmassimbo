@@ -1,0 +1,19 @@
+<div class="feed">
+	<section 
+		class="slide project"
+		ng-repeat="proj in allSlides track by $index"
+		ui-sref="project({projName: proj.slug})">
+		<div class="lockup">
+			<h3>{{proj.title.rendered}}</h3>
+		</div>
+		<div class="bg" style="background-image: url({{proj.cover}});"></div>
+	</section>
+</div>
+<div class="controls">
+	<div ng-click="down()" class="backward">
+		<
+	</div>
+	<div ng-click="up()" class="forward">
+		>
+	</div>
+</div>
