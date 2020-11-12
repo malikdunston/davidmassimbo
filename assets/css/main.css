@@ -1,32 +1,38 @@
-h1 {
-  margin: 3rem 0 1rem;
-  line-height: 1em; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  display: block;
-  font-family: 'Helvetica Neue LT Std'; }
-
-ul {
-  padding: 0; }
-
-li {
-  list-style: none; }
+:root {
+  font-size: 30px; }
 
 * {
   box-sizing: border-box; }
 
-:root {
-  font-size: 30px; }
-
-ui-view {
+html,
+body {
+  margin: 0;
+  padding: 0;
   display: block;
-  padding-top: 2em; }
+  font-family: 'Helvetica Neue LT Std';
+  box-sizing: border-box;
+  transition: background-color 2s; }
+  html ul,
+  body ul {
+    padding: 0; }
+    html ul li,
+    body ul li {
+      list-style: none; }
+  html ui-view,
+  body ui-view {
+    display: block;
+    padding-top: 2em; }
+  html.pageLoaded,
+  body.pageLoaded {
+    background: red; }
 
 body {
   background: #CECCC4;
   color: #2f2e2a; }
+
+h1 {
+  margin: 3rem 0 1rem;
+  line-height: 1em; }
 
 h1,
 h2,

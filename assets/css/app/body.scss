@@ -1,26 +1,28 @@
-	h1{
-		margin: 3rem 0 1rem;
-		line-height: 1em;
-	}
-	html, body{
-		margin: 0;
-		padding: 0;
-		display: block;
-		font-family: 'Helvetica Neue LT Std';
-	}
+:root{
+	font-size: 30px;
+}
+*{
+	box-sizing: border-box;
+}
+html, 
+body{
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-family: 'Helvetica Neue LT Std';
+	box-sizing: border-box;
+	transition: background-color 2s;
 	ul{
 		padding: 0;
-	}
-	li{
-		list-style: none;
-	}
-	*{
-		box-sizing: border-box;
-	}
-	:root{
-		font-size: 30px;
+		li{
+			list-style: none;
+		}
 	}
 	ui-view{
 		display: block;
 		padding-top: 2em;
 	}
+	&.pageLoaded{
+		background: red;
+	}
+}

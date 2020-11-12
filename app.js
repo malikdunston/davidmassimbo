@@ -82,8 +82,20 @@
 			return project
 		} 
 
-	// on route change, do this...
+		$transitions.onStart({}, function ($transition) {
+			alert(
+				"start"
+			);
+		});
+		$transitions.onBefore({}, function ($transition) {
+			alert(
+				"before"
+			);
+		});
+
 		$transitions.onSuccess({}, function ($transition) {
+			app.pageIsLoaded = true;
+			alert("success");
 			window.scrollTo(0, 0);
 			app.route = {
 				from: $transition.$from().name,
