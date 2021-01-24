@@ -1,4 +1,7 @@
-<img ng-src="{{about.data[0].html[0].img}}" alt="">
+<div class="about-image"
+	style="background-image: url({{about.data[0].html[0].img}});">
+	<!-- <img ng-src="{{about.data[0].html[0].img}}" alt=""> -->
+</div>
 
 <section
 	ng-repeat="item in about.data | orderBy: 'id'"

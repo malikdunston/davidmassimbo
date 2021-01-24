@@ -4,16 +4,25 @@
 		ng-repeat="proj in allSlides track by $index"
 		ui-sref="project({projName: proj.slug})">
 		<div class="lockup">
-			<h3>{{proj.title.rendered}}</h3>
+			<h4>{{proj.title.rendered}}</h4>
+			<p>A sample title for a project I've been working on.</p>
 		</div>
 		<div class="bg" style="background-image: url({{proj.cover}});"></div>
 	</section>
 </div>
-<div class="controls">
-	<div ng-click="down()" class="backward">
-		<
+<div ng-if="slideControls" class="controls">
+	<div 
+		ng-click="down()"
+		class="control backward">
+		<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.87 1023.96">
+			<polyline points="776.55 1011.48 27.05 511.98 776.55 12.48" />
+		</svg>		
 	</div>
-	<div ng-click="up()" class="forward">
-		>
+	<div 
+		ng-click="up()" 
+		class="control forward">
+		<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.87 1023.96">
+			<polyline points="776.55 1011.48 27.05 511.98 776.55 12.48" />
+		</svg>
 	</div>
 </div>

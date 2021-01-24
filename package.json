@@ -22,5 +22,8 @@
 	"homepage": "https://github.com/malikdunston/davidmassimbo#readme",
 	"devDependencies": {
 		"node-sass": "^4.14.1"
+	},
+	"dependencies": {
+		"ngtouch": "^1.0.1"
 	}
 }

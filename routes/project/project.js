@@ -46,15 +46,21 @@
 			project.app.getCoverImg(proj);
 		});
 
+		project.go = function(){
+			project.headerClosed = true;
+			project.app.pageIsLoaded = false;
+		}
+
 		project.thisProj = project.app.structureData(theseProj).filter(proj => proj.slug == $stateParams.projName)[0];
 
-		project.scrollDown = function(){
-			window.scroll({
-				top: 640, 
-				left: 0, 
-				behavior: 'smooth' 
-			});
-		}
+		// project.scrollDown = function(){
+			// document.querySelector("ui-view").style.transform = "translateY(-100vh)";
+			// window.scroll({
+			// 	top: 640, 
+			// 	left: 0, 
+			// 	behavior: 'smooth' 
+			// });
+		// }
 
 	});
 

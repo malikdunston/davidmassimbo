@@ -27,7 +27,7 @@
 	home.app = $scope.$parent.david;
 
 
-		// console.log(data);
+		console.log(data);
 
 			data.forEach(project => {
 				home.app.parseContent(project);

@@ -3,6 +3,7 @@
 (function(){
 
 	let david = angular.module("david", [
+	// imports
 		"ui.router",
 	// routes
 		"home",
@@ -20,11 +21,12 @@
 		$urlRouterProvider.otherwise("/");
 	});
 
-	david.controller("appCtrl", function($scope, $http, $q, $transitions){
+	david.controller("appCtrl", function($scope, $http, $q, $transitions, $stateParams){
 	let app = this;
 
 		$http({
 			method: "GET",
+			// url: window.$cms + "projects"
 			url: window.$cms + "projects?per_page=100"
 		}).then(function(res){
 			res.data.forEach(project => {
@@ -82,20 +84,16 @@
 			return project
 		} 
 
-		$transitions.onStart({}, function ($transition) {
-			alert(
-				"start"
-			);
-		});
-		$transitions.onBefore({}, function ($transition) {
-			alert(
-				"before"
-			);
-		});
-
+		// $transitions.onStart({}, function ($transition) {
+		// 	app.navOpen = false; //close nav immediately
+		// });
+		// $transitions.onBefore({}, function ($transition) {
+		// 	// document.querySelector("navigation").style.color = "blue";
+		// 	app.pageIsLoaded = false;
+		// });
 		$transitions.onSuccess({}, function ($transition) {
 			app.pageIsLoaded = true;
-			alert("success");
+			// $scope.$apply(app.pageIsLoaded);
 			window.scrollTo(0, 0);
 			app.route = {
 				from: $transition.$from().name,
@@ -106,7 +104,23 @@
 			if(app.navOpen == true){
 				app.navOpen = false;
 			}
+				console.log($stateParams);
 		});
+
+		window.addEventListener("scroll", function(event){
+			if(app.pageIsLoaded == true ){
+				app.pageIsLoaded = false;
+				$scope.$apply(app.pageIsLoaded);
+				if($stateParams.projName){
+
+					// document.querySelector("ui-view header").classList.add("closed");;
+				}
+
+				console.log(event);
+
+			};
+		})
+
 
 	});
 

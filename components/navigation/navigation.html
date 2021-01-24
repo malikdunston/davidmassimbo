@@ -2,6 +2,8 @@
 	<h6 class="logo" ui-sref="home">David <br>Massimbo</h6>
 	<div class="hamburger" ng-click="navigation.app.navOpen = !navigation.app.navOpen">&#9776;</div>
 </div>
-<ul class="bottom" >
-	<li ng-repeat="x in navigation.app.menu" ui-sref="{{x.link}}">{{x.title}}</li>
-</ul>
+<div class="bottom" ng-click="navigation.app.navOpen = false" ng-class="{open: navigation.app.navOpen}">
+	<ul>
+		<li ng-repeat="x in navigation.app.menu" ui-sref="{{x.link}}">{{x.title}}</li>
+	</ul>
+</div>

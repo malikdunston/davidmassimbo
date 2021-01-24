@@ -1,7 +1,13 @@
 body.project{
-	navigation{
-		background: transparent;
-		color: $light;
+	&.pageLoaded{
+		navigation .top{
+			background: transparent;
+			color: $light;
+		}
+	}
+	&:not(.pageLoaded) navigation .top{
+		background: $light;
+		color: $dark;
 	}
 	ui-view{
 		padding: 0;
@@ -9,32 +15,48 @@ body.project{
 	header{
 		background: $dark;
 		height: 100vh;
+		transition: height .5s;
 		color: $light;
+		overflow: hidden;
+			position: relative;
 		> *{
 			position: absolute;
 		}
+		&.closed{
+			height: 0;
+			margin-bottom: 2em;
+		}
 		.lockup{
-			bottom: .5em;
 			left: .5em;
-			width: calc(100vw - 3em);
-			h1{
+			bottom: .5em;
+			width: calc(100% - 3em);
+			*{ // h1, p
 				margin: 0;
 			}
-			z-index: 2;
 		}
 		.explore{
+			width: 1em;
+			right: .75em;
 			bottom: .5em;
-			right: .5em;
-			z-index: 2;
+			polyline{
+				stroke-width: 3em;
+			}
 		}
 		.background{
 			opacity: .4;
 			width: 100%;
 			height: 100%;
-			z-index: 1;
 			background-size: cover;
-			
+			background-position: center;
+			transition: .66s;
+			&.expanded{
+				height: 200%;
+				width: 200%;
+			}
 		}
+	}
+	article:not(:first-of-type){
+		padding-top: .5rem;
 	}
 	figure{
 		margin: 0;

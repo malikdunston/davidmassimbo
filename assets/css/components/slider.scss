@@ -17,9 +17,14 @@ slider{
 					bottom: 10px;
 					left: 10px;
 					width: 70%;
-					h3{
+					*{
 						color: $light;
 						margin: 0;
+					}
+					p{
+						font-size: .5rem;
+						margin-top: .2rem;
+						line-height: 1;
 					}
 					z-index: 2;
 				}
@@ -46,27 +51,31 @@ slider{
 	}
 	.controls {
 		position: absolute;
-		width: 80%;
-		top: 50%;
+		height: 1.25em;
+		width: 100%;
+		transform: translate(-50%, 0%);
+		top: 0;
 		left: 50%;
-		transform: translate(-50%, -50%);
 		display: flex;
 		justify-content: space-between;
-		transition: 1s;
-		.forward,
-		.backward {
-			font-size: 200%;
-			line-height: .75;
-			font-weight: bold;
-			margin: 0;
+		.control {
+			height: 100%;
+			padding: .33em .5em;
 			cursor: pointer;
-			color: white;
+			&.forward .icon{
+				transform: rotate(180deg);
+			}
+			.icon{
+				height: 100%;
+				width: auto;
+				overflow: visible;
+			}
 		}
 	}
 
 	&:hover{
 		.controls{
-			width: 90%;
+			// width: 90%;
 		}
 	}
 }

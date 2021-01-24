@@ -11,7 +11,7 @@ body{
 	display: block;
 	font-family: 'Helvetica Neue LT Std';
 	box-sizing: border-box;
-	transition: background-color 2s;
+	overflow-x: hidden;
 	ul{
 		padding: 0;
 		li{
@@ -19,10 +19,31 @@ body{
 		}
 	}
 	ui-view{
-		display: block;
 		padding-top: 2em;
+		display: block;
+		width: 100vw;
+		transition: all .33s;
+		overflow: hidden;
+		// background: red;
+	}
+	img{
+		display: block;
+	}
+	*.pageLoaded{
+		ui-view{
+			// background: green;
+		}
+	}
+	*.open{
+		ui-view{
+			background-attachment: fixed;
+			opacity: .25;
+			margin-left: 50vw;
+		}
 	}
 	&.pageLoaded{
-		background: red;
+		ui-view{
+			// margin-top: 0em;
+		}
 	}
 }

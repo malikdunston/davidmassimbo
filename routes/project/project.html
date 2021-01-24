@@ -1,34 +1,51 @@
-<header>
-	<div class="lockup">
+<header
+	ng-class="{closed: project.headerClosed}">
+	<div
+		class="background"
+		ng-class="{expanded: project.app.headerExpanded}"
+		style="background-image: url('{{project.thisProj.cover}}')">
+	</div>
+	<div class="lockup" ng-click="alert('heyyyyyyyy');">
 		<h1>{{project.thisProj.title.rendered}}</h1>
 		<!-- <p>{{project.thisProj.description}}</p> -->
 	</div>
-	<div class="explore" ng-click="project.scrollDown()">&#x2B07;</div>
-	<div
-		class="background"
-		style="background-image: url('{{project.thisProj.cover}}')">
+	<div 
+		class="control explore"
+		ng-click="project.go();">
+		<svg ng-click="alert('heyyyyyyyy');" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020.21 1027.32">
+			<polyline points="1009.61 506.61 510.11 1006.11 10.61 506.61" />
+			<polyline points="1009.61 10.61 510.11 510.11 10.61 10.61" />
+		</svg>
 	</div>
 </header>
 
+<!-- for if this project has its own info -->
 <article
 	ng-if="project.thisProj.content.data.length > 0">
-	<div ng-repeat="node in project.thisProj.content.data">
+	<div 	
+		class="node"
+		ng-repeat="node in project.thisProj.content.data">
 		<p ng-if="node.text">{{node.text}}</p>
-		<figure>
-			<img ng-if="node.img" ng-src="{{node.img}}" alt="{{node.img}}"/>
+		<figure ng-if="node.img">
+			<img ng-src="{{node.img}}" alt="{{node.img}}"/>
 			<figcaption ng-if="node.caption">{{node.caption}}</figcaption>
 		</figure>
 	</div>
 </article>
 
+<!-- for if this project has children with their own info -->
 <article
 	ng-repeat="proj in project.thisProj.children track by $index">
 	<h1>{{proj.title.rendered}}</h1>
-	<div ng-repeat="node in proj.content.data">
+	<div 
+		class="node"
+		ng-repeat="node in proj.content.data">
 		<p ng-if="node.text">{{node.text}}</p>
-		<figure>
-			<img ng-if="node.img" ng-src="{{node.img}}" alt="{{node.img}}"/>
+		<figure ng-if="node.img">
+			<img ng-src="{{node.img}}" alt="{{node.img}}"/>
 			<figcaption ng-if="node.caption">{{node.caption}}</figcaption>
 		</figure>
 	</div>
 </article>
+
+<work feed="project.app.projects"></work>

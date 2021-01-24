@@ -1,9 +1,14 @@
 @import 
 	"app/body",
 	"app/colors",
+	"app/icons",
 	"app/typography",
+// routes
 	"routes/home",
+	"routes/about",
+	"routes/contact",
 	"routes/project",
+// components
 	"components/navigation",
 	"components/work",
 	"components/slider";

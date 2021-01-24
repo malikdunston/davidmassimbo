@@ -64,11 +64,12 @@
 			restrict: 'AE',
 			scope: {
 				feed: "=feed",
-				speed: "@speed"
+				speed: "@speed",
+				slideControls: "@slideControls"
 			},
-			link: link,
 			templateUrl: 'components/slider/slider.html',
-			compile: compile
+			compile: compile,
+			link: link
 		}
 	});
 })()

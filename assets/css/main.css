@@ -11,7 +11,7 @@ body {
   display: block;
   font-family: 'Helvetica Neue LT Std';
   box-sizing: border-box;
-  transition: background-color 2s; }
+  overflow-x: hidden; }
   html ul,
   body ul {
     padding: 0; }
@@ -20,15 +20,31 @@ body {
       list-style: none; }
   html ui-view,
   body ui-view {
+    padding-top: 2em;
     display: block;
-    padding-top: 2em; }
-  html.pageLoaded,
-  body.pageLoaded {
-    background: red; }
+    width: 100vw;
+    transition: all .33s;
+    overflow: hidden; }
+  html img,
+  body img {
+    display: block; }
+  html *.open ui-view,
+  body *.open ui-view {
+    background-attachment: fixed;
+    opacity: .25;
+    margin-left: 50vw; }
 
 body {
   background: #CECCC4;
   color: #2f2e2a; }
+
+svg.icon {
+  overflow: visible; }
+  svg.icon * {
+    fill: none;
+    stroke: #CECCC4;
+    stroke-width: 5em;
+    stroke-linecap: "round"; }
 
 h1 {
   margin: 3rem 0 1rem;
@@ -43,8 +59,30 @@ h6 {
   line-height: 1;
   margin: 0 0 .5em 0; }
 
-p {
-  margin: 0 0 .5em 0; }
+body.project ui-view p,
+body.project ui-view figcaption,
+body.project ui-view h1,
+body.project ui-view h2,
+body.project ui-view h3,
+body.project ui-view h4,
+body.project ui-view h5,
+body.project ui-view h6,
+body.about ui-view p,
+body.about ui-view figcaption,
+body.about ui-view h1,
+body.about ui-view h2,
+body.about ui-view h3,
+body.about ui-view h4,
+body.about ui-view h5,
+body.about ui-view h6 {
+  margin: 0 .5rem .5rem .5rem;
+  font-size: .666em; }
+
+div.node + div.node p,
+img + p,
+figure + p,
+figcaption {
+  margin-top: 0.5rem !important; }
 
 h1 {
   font-size: 1.25em; }
@@ -52,9 +90,20 @@ h1 {
 h6 {
   font-size: .5em; }
 
-body.project navigation {
+.about-image {
+  overflow: hidden;
+  margin: 0 .5em .5em .5em;
+  height: 6em;
+  background-position-x: 72%;
+  background-position-y: 6%; }
+
+body.project.pageLoaded navigation .top {
   background: transparent;
   color: #CECCC4; }
+
+body.project:not(.pageLoaded) navigation .top {
+  background: #CECCC4;
+  color: #2f2e2a; }
 
 body.project ui-view {
   padding: 0; }
@@ -62,26 +111,40 @@ body.project ui-view {
 body.project header {
   background: #2f2e2a;
   height: 100vh;
-  color: #CECCC4; }
+  transition: height .5s;
+  color: #CECCC4;
+  overflow: hidden;
+  position: relative; }
   body.project header > * {
     position: absolute; }
+  body.project header.closed {
+    height: 0;
+    margin-bottom: 2em; }
   body.project header .lockup {
-    bottom: .5em;
     left: .5em;
-    width: calc(100vw - 3em);
-    z-index: 2; }
-    body.project header .lockup h1 {
+    bottom: .5em;
+    width: calc(100% - 3em); }
+    body.project header .lockup * {
       margin: 0; }
   body.project header .explore {
-    bottom: .5em;
-    right: .5em;
-    z-index: 2; }
+    width: 1em;
+    right: .75em;
+    bottom: .5em; }
+    body.project header .explore polyline {
+      stroke-width: 3em; }
   body.project header .background {
     opacity: .4;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    background-size: cover; }
+    background-size: cover;
+    background-position: center;
+    transition: .66s; }
+    body.project header .background.expanded {
+      height: 200%;
+      width: 200%; }
+
+body.project article:not(:first-of-type) {
+  padding-top: .5rem; }
 
 body.project figure {
   margin: 0; }
@@ -92,11 +155,14 @@ body.project figure {
 navigation {
   display: block;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 1000;
   overflow: hidden;
-  background: #CECCC4; }
+  height: 2em;
+  transition: height .5s; }
   navigation .top {
+    transition: background-color .3s, color 1s;
+    background: #CECCC4;
     height: 2em;
     overflow: hidden;
     display: flex;
@@ -112,29 +178,50 @@ navigation {
       text-align: center; }
   navigation .bottom {
     padding: 0 .5em;
+    position: absolute;
     display: block;
-    height: 0;
-    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    left: -50vw;
     margin: 0;
-    transition: .333s all; }
+    transition: .33s left; }
+    navigation .bottom.open {
+      left: 0; }
+    navigation .bottom ul {
+      position: relative;
+      bottom: 0;
+      margin: 0;
+      width: 50%; }
+      navigation .bottom ul li {
+        font-size: .45em;
+        letter-spacing: .1rem;
+        line-height: 2em;
+        font-weight: 600;
+        text-transform: uppercase; }
 
-body.open navigation .bottom {
-  height: calc(100vh - 3em); }
+body.open ui-view {
+  pointer-events: none; }
+
+body.open navigation {
+  height: 100vh; }
+
+body.pageIsLoaded navigation .top {
+  background: red !important; }
 
 work {
   display: block;
   width: auto;
   margin: 0 .5em .5em .5em; }
   work > h6 {
-    margin-bottom: .5rem; }
+    display: none; }
   work .project {
     padding: 0 0 .25em 0;
     width: 50%;
     display: inline-block;
     vertical-align: top; }
-    work .project:nth-child(even) {
+    work .project:nth-of-type(odd) {
       padding-right: .25em; }
-    work .project:nth-child(odd) {
+    work .project:nth-of-type(even) {
       padding-left: .25em; }
     work .project .cover {
       height: 33vw;
@@ -143,6 +230,12 @@ work {
     work .project .lockup h6 {
       margin: .5em 0 .5em 0;
       font-size: .5em; }
+
+body.project work {
+  padding-top: 1rem; }
+  body.project work > h6 {
+    display: block;
+    margin: .5rem 0; }
 
 slider {
   cursor: pointer;
@@ -163,9 +256,13 @@ slider {
         left: 10px;
         width: 70%;
         z-index: 2; }
-        slider .feed .slide.project .lockup h3 {
+        slider .feed .slide.project .lockup * {
           color: #CECCC4;
           margin: 0; }
+        slider .feed .slide.project .lockup p {
+          font-size: .5rem;
+          margin-top: .2rem;
+          line-height: 1; }
       slider .feed .slide.project .bg {
         position: absolute;
         width: 100%;
@@ -184,20 +281,20 @@ slider {
         z-index: 2; }
   slider .controls {
     position: absolute;
-    width: 80%;
-    top: 50%;
+    height: 1.25em;
+    width: 100%;
+    transform: translate(-50%, 0%);
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
-    justify-content: space-between;
-    transition: 1s; }
-    slider .controls .forward,
-    slider .controls .backward {
-      font-size: 200%;
-      line-height: .75;
-      font-weight: bold;
-      margin: 0;
-      cursor: pointer;
-      color: white; }
-  slider:hover .controls {
-    width: 90%; }
+    justify-content: space-between; }
+    slider .controls .control {
+      height: 100%;
+      padding: .33em .5em;
+      cursor: pointer; }
+      slider .controls .control.forward .icon {
+        transform: rotate(180deg); }
+      slider .controls .control .icon {
+        height: 100%;
+        width: auto;
+        overflow: visible; }
