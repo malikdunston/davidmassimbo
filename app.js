@@ -104,7 +104,6 @@
 			if(app.navOpen == true){
 				app.navOpen = false;
 			}
-				console.log($stateParams);
 		});
 
 		window.addEventListener("scroll", function(event){

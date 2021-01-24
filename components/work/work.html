@@ -1,12 +1,9 @@
 <h6>Browse More Projects</h6>
-
-<div 
+<div id="proj-{{proj.slug}}"
 	class="project"
-	id="proj-{{proj.slug}}"
 	ng-repeat="proj in work.feed track by $index"
 	ui-sref="project({projName: proj.slug})">
-	<div class="cover"
-		style="background: url({{proj.cover}});">
+	<div class="cover" style="background: url({{proj.cover}});">
 	</div>
 	<div class="lockup">
 		<h6>{{proj.title.rendered}}</h6>
